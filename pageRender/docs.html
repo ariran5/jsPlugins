@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body >
+	
+<header>
+	<ul>
+		<li>Контент</li>
+		<li>Контент</li>
+		<li>Контент</li>
+		<li>Контент</li>
+	</ul>
+</header>
+
+<main>
+
+	<section>
+		<header>
+			<h2>Инициализация</h2>
+			<p>Первой строчкой кода будет запоминание в переменную объекта</p>
+			<pre>
+	var a = new pageDraw();
+			</pre>
+
+			<p>Можно добавить параметры при запуске</p>
+			<pre>
+	var a = new pageDraw({
+		render: `
+		&lt;header&gt;
+			&lt;h2&gt;&lt;/h2&gt;
+			&lt;p&gt;` + data + `&lt;/p&gt;
+		&lt;/header&gt;
+		&lt;div&gt;
+			&lt;ul&gt;
+				&lt;li&gt;1 блок&lt;/li&gt;
+				&lt;li&gt;1 блок&lt;/li&gt;
+				&lt;li&gt;1 блок&lt;/li&gt;
+				&lt;li class="zzzz"&gt;1 блок&lt;/li&gt;
+			&lt;/ul&gt;	
+		&lt;/div&gt;`,
+		data: '/qqq/pageDrawTest.js',
+		position: 'afterBegin body',
+		element: 'section', // указывать только при инициализации
+		class: 'qwe' // через пробел несколько классов
+	});
+
+			</pre>
+		</header>
+	</section>
+
+	<section>
+		<header>
+			<h2>a.render</h2>
+			<p>Для того, что-бы записать любой html код внутрь блока нужно присвоить его внутри a.data,then(()=>{ a.render = code;}) если нужно получить данные или просто в любом месте если данные получать не нужно.</p>
+			<pre>
+
+
+	a.data.then((data)=>{ 
+		a.render = `
+		&lt;header&gt;
+			&lt;h2&gt;&lt;/h2&gt;
+			&lt;p&gt;` + data + `&lt;/p&gt;
+		&lt;/header&gt;
+		&lt;div&gt;
+			&lt;ul&gt;
+				&lt;li&gt;1 блок&lt;/li&gt;
+				&lt;li&gt;1 блок&lt;/li&gt;
+				&lt;li&gt;1 блок&lt;/li&gt;
+				&lt;li class="zzzz"&gt;1 блок&lt;/li&gt;
+			&lt;/ul&gt;	
+		&lt;/div&gt;`;
+	});
+				
+			</pre>
+		</header>
+	</section>
+
+	<section>
+		<header>
+			<h2>a.position</h2>
+			<p>тут есть 3 варианта, или строка "afterbegin body" или массив, где 1 аргумент позиционирование, а 2 объект ['beforebegin',document.querySelector('body')] или массив срок, в случае если 1 вариант не подойдет то будет использоваться 2 вариант вставки.</p>
+		</header>
+	</section>
+
+	<section>
+		<header>
+			<h2>a.children</h2>
+			<p>если объекту 1 назнать объект 2 как ребенка, то объект 1 будет управлять отображением, перерендером и скрытием дочернего блока. Блоки могут находиться в любых местах, как вложенно так и нет. Если применяется пложенность, то иерархия должна соответствовать.</p>
+
+			<pre>
+	var a = new pageDraw();
+	var b = new pageDraw();
+
+	a.children = b;
+			</pre>
+		</header>
+	</section>
+
+	<section>
+		<header>
+			<h2>a.delete</h2>
+			<p>Убирает блок из DOM и убирает из DOM детей</p>
+		</header>
+	</section>
+
+</main>
+
+<footer>
+	
+</footer>
+
+	<script src="pageDraw.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>
